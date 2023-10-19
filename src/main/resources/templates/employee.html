@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn {
+        text-decoration: none;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+    .btn-update {
+    background-color: blue;
+    color: white;
+}
+
+.btn-delete {
+    background-color: red;
+    color: white;
+
+}
+.header-row th {
+    background-color: lightblue;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.celeste-background {
+    background-color: lightblue;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black; /* Cambia el color del texto según tus preferencias */
+}
+</style>
+</head>
+<body>
+
+<h1>Employees List</h1>
+<table border="2" width="70%" cellpadding="2">
+
+    <tr class="header-row"><th>Id</th><th>Firts Name</th>
+        <th>Last Name</th><th>Salary</th>
+        <th>Rol</th><th>Edit</th><th>Delete</th>
+    </tr>
+    <tr th:each = "employee,iStat : ${list}">
+        <td th:text="${employee.id}"/>
+        <td th:text="${employee.firstName}"/>
+        <td th:text="${employee.lastName}"/>
+        <td th:text="${employee.salary}"/>
+        <td th:text="${employee.role}"/>
+        <td>
+            <a th:href="@{/update/{id}(id=${employee.id})}" class="btn btn-update">Update</a>
+
+
+        </td>
+        <td><a th:href="@{/delete/{id}(id=${employee.id})}" class="btn btn-delete">Delete</a>
+        </td>
+
+    </tr>
+
+
+
+
+</table>
+<br/>
+<a href="addEmployee" class="celeste-background">Add New Employee</a>
+</body>
+</html>
